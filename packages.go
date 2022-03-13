@@ -1,7 +1,6 @@
 package tebexgo
 
 import (
-	"encoding/json"
 	"github.com/itschip/tebexgo/internal"
 	"log"
 )
@@ -16,32 +15,22 @@ func (s *Session) GetAllPackages() (*[]Package, error) {
 	
 	var packages []Package
 	
-	// Should abstract this into some function.
-	err = json.Unmarshal(resp, &packages)
-	if err != nil {
-		log.Println("Failed to marshal response")
-		return nil, err
-	}
+	internal.UnmarshalResponse(resp, &packages)
 	
 	return &packages, nil
 }
 
-func (s *Session) GetPackage(packageId string) (Package, error)  {
+func (s *Session) GetPackage(packageId string) (*Package, error)  {
 	resp, err := internal.GetRequest(s.Secret, RetrievePackageEndpoint + packageId)
 	
 	if err != nil {
-		log.Printf("Failed to fetch packages, Error: %v", err.Error())
-		return Package{}, err
+		log.Printf("Failed to fetch package, Error: %v", err.Error())
+		return nil, err
 	}
 	
 	var pkg Package
 	
-	// Same here
-	err = json.Unmarshal(resp, &pkg)
-	if err != nil {
-		log.Println(err.Error())
-		return Package{}, err
-	}
+	internal.UnmarshalResponse(resp, &pkg)
 	
-	return pkg, nil
+	return &pkg, nil
 }

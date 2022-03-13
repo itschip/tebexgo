@@ -8,7 +8,7 @@ import (
 
 func TestNew(t *testing.T) {
 	s := New("secret")
-	pkg, err := s.GetPackage("pkg_id")
+	pkg, err := s.GetPackage("pkgid")
 	if err != nil {
 		log.Println("Failed to get package")
 	}
