@@ -84,24 +84,24 @@ type Listing struct {
 }
 
 type ListingCategory struct {
-	Id int `json:"id"`
-	Order int `json:"order"`
-	Name string `json:"name"`
-	OnlySubcategories bool `json:"only_subcategories"`
-	Subcategories []interface{} `json:"subcategories"`
-	Packages ListingPackage `json:"packages"`
+	Id                int            `json:"id"`
+	Order             int            `json:"order"`
+	Name              string         `json:"name"`
+	OnlySubcategories bool           `json:"only_subcategories"`
+	Subcategories     []interface{}  `json:"subcategories"`
+	Packages          ListingPackage `json:"packages"`
 }
 
 type ListingPackage struct {
-	Id int `json:"id"`
-	Order int `json:"order"`
-	Name string `json:"name"`
-	Price string `json:"price"`
-	Sale ListingPackageSale `json:"sale"`
+	Id    int                `json:"id"`
+	Order int                `json:"order"`
+	Name  string             `json:"name"`
+	Price string             `json:"price"`
+	Sale  ListingPackageSale `json:"sale"`
 }
 
 type ListingPackageSale struct {
-	Active bool `json:"active"`
+	Active   bool   `json:"active"`
 	Discount string `json:"discount"`
 }
 
@@ -112,15 +112,15 @@ type Bans struct {
 }
 
 type BanData struct {
-	Id int `json:"id"`
-	Time string `json:"time"`
-	Ip string `json:"ip"`
-	PaymentEmail string `json:"payment_email"`
-	Reason string `json:"reason"`
-	User BanUser `json:"user"`
+	Id           int     `json:"id"`
+	Time         string  `json:"time"`
+	Ip           string  `json:"ip"`
+	PaymentEmail string  `json:"payment_email"`
+	Reason       string  `json:"reason"`
+	User         BanUser `json:"user"`
 }
 
 type BanUser struct {
-	Ign string `json:"ign"`
+	Ign  string `json:"ign"`
 	Uuid string `json:"uuid"`
 }
