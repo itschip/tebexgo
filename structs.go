@@ -37,8 +37,8 @@ type Server struct {
 type Package struct {
 	Id                int             `json:"id"`
 	Name              string          `json:"name"`
-	Image             string          `json:"image"`
-	Price             int             `json:"price"`
+	Image             interface{}     `json:"image"`
+	Price             float32         `json:"price"`
 	ExpiryLength      int             `json:"expiry_length"`
 	ExpiryPeriod      string          `json:"expiry_period"`
 	Type              string          `json:"type"`

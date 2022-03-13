@@ -2,11 +2,13 @@ package tebexgo
 
 import (
 	"encoding/json"
+	"github.com/itschip/tebexgo/internal"
 	"log"
 )
 
 func (s *Session) GetAllPackages() (*[]Package, error) {
-	resp, err := s.GetRequest(AllPackagesEndpoint)
+	resp, err := internal.GetRequest(s.Secret, AllPackagesEndpoint)
+	
 	if err != nil {
 		log.Printf("Failed to fetch packages, Error: %v", err.Error())
 		return nil, err
@@ -24,11 +26,12 @@ func (s *Session) GetAllPackages() (*[]Package, error) {
 	return &packages, nil
 }
 
-func (s *Session) GetPackage(packageId string) (*Package, error)  {
-	resp, err := s.GetRequest(RetrievePackageEndpoint + packageId)
+func (s *Session) GetPackage(packageId string) (Package, error)  {
+	resp, err := internal.GetRequest(s.Secret, RetrievePackageEndpoint + packageId)
+	
 	if err != nil {
 		log.Printf("Failed to fetch packages, Error: %v", err.Error())
-		return nil, err
+		return Package{}, err
 	}
 	
 	var pkg Package
@@ -36,9 +39,9 @@ func (s *Session) GetPackage(packageId string) (*Package, error)  {
 	// Same here
 	err = json.Unmarshal(resp, &pkg)
 	if err != nil {
-		log.Println("Failed to marshal response")
-		return nil, err
+		log.Println(err.Error())
+		return Package{}, err
 	}
 	
-	return &pkg, nil
+	return pkg, nil
 }

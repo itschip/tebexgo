@@ -1,4 +1,4 @@
-package tebexgo
+package internal
 
 import (
 	"fmt"
@@ -8,14 +8,14 @@ import (
 	"net/url"
 )
 
-func (s *Session) GetRequest(endpoint string) ([]byte, error) {
+func GetRequest(secret string, endpoint string) ([]byte, error) {
 	reqURL, _ := url.Parse(endpoint)
 	
 	req := &http.Request{
 		Method: "GET",
 		URL: reqURL,
 		Header: map[string][]string{
-			"X-Tebex-Secret": {s.Secret},
+			"X-Tebex-Secret": {secret},
 		},
 	}
 	
@@ -34,7 +34,7 @@ func (s *Session) GetRequest(endpoint string) ([]byte, error) {
 	return response, nil
 }
 
-func (s *Session) PostRequest(endpoint string, body io.ReadCloser) ([]byte, error) {
+func PostRequest(secret string, endpoint string, body io.ReadCloser) ([]byte, error) {
 	reqURL, _ := url.Parse(endpoint)
 	
 	req := &http.Request{
@@ -42,7 +42,7 @@ func (s *Session) PostRequest(endpoint string, body io.ReadCloser) ([]byte, erro
 		URL: reqURL,
 		Body: body,
 		Header: map[string][]string{
-			"X-Tebex-Secret": {s.Secret},
+			"X-Tebex-Secret": {secret},
 		},
 	}
 	
