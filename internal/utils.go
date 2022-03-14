@@ -6,7 +6,7 @@ import (
 )
 
 func UnmarshalResponse(response []byte, v interface{}) error {
-	err := json.Unmarshal(response, &v)
+	err := json.Unmarshal(response, v)
 	if err != nil {
 		log.Println("Failed to marshal response")
 		return err
