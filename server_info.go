@@ -6,7 +6,7 @@ import (
 )
 
 func (s *Session) GetServerInfo() (*ServerInformation, error) {
-	resp, err := internal.GetRequest(s.Secret, AllPackagesEndpoint)
+	resp, err := internal.GetRequest(s.Secret, InformationEndpoint)
 	
 	if err != nil {
 		log.Printf("Failed to fetch server information, Error: %v", err.Error())

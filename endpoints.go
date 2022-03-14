@@ -5,4 +5,5 @@ var (
 	InformationEndpoint = TebexEndpoint + "/information"
 	AllPackagesEndpoint = TebexEndpoint + "/packages"
 	RetrievePackageEndpoint = TebexEndpoint + "/package/"
+	ListingEndpoint = TebexEndpoint + "/listing"
 )
