@@ -130,3 +130,13 @@ type BanInput struct {
 	Ip     string
 	User   string
 }
+
+type PutCheckoutObject struct {
+	PackageId string
+	Username  string
+}
+
+type Checkout struct {
+	Url     string `json:"url"`
+	Expires string `json:"expires"`
+}

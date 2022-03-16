@@ -7,4 +7,5 @@ var (
 	RetrievePackageEndpoint = TebexEndpoint + "/package/"
 	ListingEndpoint         = TebexEndpoint + "/listing"
 	BansEndpoint            = TebexEndpoint + "/bans"
+	CheckoutEndpoint        = TebexEndpoint + "/checkout"
 )
