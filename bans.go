@@ -1,9 +1,8 @@
 package tebexgo
 
 import (
-	"bytes"
 	"encoding/json"
-	"io"
+	"fmt"
 	"log"
 
 	"github.com/itschip/tebexgo/internal"
@@ -24,19 +23,14 @@ func (s *Session) GetAllBans() (*Bans, error) {
 
 func (s *Session) CreateBan(input *BanInput) (*BanData, error) {
 	jsonBody, err := json.Marshal(&input)
-	bodyS := string(jsonBody)
 
-	if err != nil {
-		log.Println(err.Error())
-	}
-
-	reqBody := io.NopCloser(bytes.NewBufferString(bodyS))
-
-	res, err := internal.PostRequest(s.Secret, BansEndpoint, reqBody)
+	res, err := internal.PostRequest(s.Secret, BansEndpoint, jsonBody)
 	if err != nil {
 		log.Println("Failed to create ban")
 		return nil, err
 	}
+
+	fmt.Println(string(res))
 
 	var ban BanData
 	internal.UnmarshalResponse(res, &ban)

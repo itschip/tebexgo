@@ -126,14 +126,14 @@ type BanUser struct {
 }
 
 type BanInput struct {
-	Reason string
-	Ip     string
-	User   string
+	Reason string `json:"reason"`
+	Ip     string `json:"ip"`
+	User   string `json:"user"`
 }
 
 type PutCheckoutObject struct {
-	PackageId string
-	Username  string
+	PackageId string `json:"package_id"`
+	Username  string `json:"username"`
 }
 
 type Checkout struct {

@@ -1,9 +1,7 @@
 package tebexgo
 
 import (
-	"bytes"
 	"encoding/json"
-	"io"
 	"log"
 
 	"github.com/itschip/tebexgo/internal"
@@ -46,11 +44,7 @@ func (s *Session) UpdatePackage(packageId string, updateObject *UpdatePackageObj
 		return err
 	}
 
-	bodyS := string(reqBody)
-
-	jsonBody := io.NopCloser(bytes.NewBufferString(bodyS))
-
-	_, err = internal.PostRequest(s.Secret, RetrievePackageEndpoint+packageId, jsonBody)
+	_, err = internal.PostRequest(s.Secret, RetrievePackageEndpoint+packageId, reqBody)
 
 	if err != nil {
 		log.Printf("Failed to update package, Error: %v", err.Error())
