@@ -124,3 +124,9 @@ type BanUser struct {
 	Ign  string `json:"ign"`
 	Uuid string `json:"uuid"`
 }
+
+type BanInput struct {
+	Reason string
+	Ip     string
+	User   string
+}
