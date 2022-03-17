@@ -9,4 +9,5 @@ var (
 	BansEndpoint            = TebexEndpoint + "/bans"
 	CheckoutEndpoint        = TebexEndpoint + "/checkout"
 	AllSalesEndpoint        = TebexEndpoint + "/sales"
+	GiftCardsEndpoint       = TebexEndpoint + "/gift-cards"
 )

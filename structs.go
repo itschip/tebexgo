@@ -131,6 +131,8 @@ type BanInput struct {
 	User   string `json:"user"`
 }
 
+// Checkout
+
 type PutCheckoutObject struct {
 	PackageId string `json:"package_id"`
 	Username  string `json:"username"`
@@ -139,4 +141,24 @@ type PutCheckoutObject struct {
 type Checkout struct {
 	Url     string `json:"url"`
 	Expires string `json:"expires"`
+}
+
+// Gift cards
+
+type GiftCards struct {
+	Data []GiftCard `json:"data"`
+}
+
+type GiftCard struct {
+	Id      int             `json:"id"`
+	Code    string          `json:"code"`
+	Balance GiftCardBalance `json:"balance"`
+	Note    string          `json:"note"`
+	Void    bool            `json:"void"`
+}
+
+type GiftCardBalance struct {
+	Starting  string `json:"starting"`
+	Remaining string `json:"remaining"`
+	Currency  string `json:"currency"`
 }
