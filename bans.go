@@ -21,7 +21,7 @@ func (s *Session) GetAllBans() (*Bans, error) {
 	return &bans, err
 }
 
-func (s *Session) CreateBan(input *BanInput) (*BanData, error) {
+func (s *Session) CreateBan(input *BanInput) (*Bans, error) {
 	jsonBody, err := json.Marshal(&input)
 
 	res, err := internal.PostRequest(s.Secret, BansEndpoint, jsonBody)
@@ -32,7 +32,7 @@ func (s *Session) CreateBan(input *BanInput) (*BanData, error) {
 
 	fmt.Println(string(res))
 
-	var ban BanData
+	var ban Bans
 	internal.UnmarshalResponse(res, &ban)
 
 	return &ban, nil
