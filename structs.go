@@ -72,9 +72,9 @@ type PackageServer struct {
 }
 
 type UpdatePackageObject struct {
-	Disabled bool
-	Name     string
-	Price    int
+	Disabled bool   `json:"disabled"`
+	Name     string `json:"name"`
+	Price    int    `json:"price"`
 }
 
 // Listing
