@@ -35,8 +35,14 @@ func GetRequest(secret string, endpoint string) ([]byte, error) {
 	return response, nil
 }
 
+// Should change this to use DefaultClient
 func PostRequest(secret string, endpoint string, body []byte) ([]byte, error) {
 	request, err := http.NewRequest("POST", endpoint, bytes.NewBuffer(body))
+	if err != nil {
+		log.Println("Failed to post request")
+		return nil, err
+	}
+
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("X-Tebex-Secret", secret)
 
