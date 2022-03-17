@@ -44,7 +44,7 @@ func (s *Session) UpdatePackage(packageId string, updateObject *UpdatePackageObj
 		return err
 	}
 
-	_, err = internal.PostRequest(s.Secret, RetrievePackageEndpoint+packageId, reqBody)
+	_, err = internal.PutRequest(s.Secret, RetrievePackageEndpoint+packageId, reqBody)
 
 	if err != nil {
 		log.Printf("Failed to update package, Error: %v", err.Error())
