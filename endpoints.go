@@ -8,4 +8,5 @@ var (
 	ListingEndpoint         = TebexEndpoint + "/listing"
 	BansEndpoint            = TebexEndpoint + "/bans"
 	CheckoutEndpoint        = TebexEndpoint + "/checkout"
+	AllSalesEndpoint        = TebexEndpoint + "/sales"
 )
