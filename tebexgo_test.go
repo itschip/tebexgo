@@ -6,8 +6,8 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	s := New("be25ccea31449768e8961afade6cfc166a46e0ee")
+	s := New("")
 
-	data, _ := s.CreateBan(&BanInput{Reason: "fuck u bitch", Ip: "", User: "610495"})
+	data, _ := s.CreateBan(&BanInput{Reason: "some reason", Ip: "", User: "some uid"})
 	fmt.Println(data.Reason)
 }
