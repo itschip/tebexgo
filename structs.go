@@ -162,3 +162,9 @@ type GiftCardBalance struct {
 	Remaining string `json:"remaining"`
 	Currency  string `json:"currency"`
 }
+
+type PutGiftCardObject struct {
+	ExpiresAt string `json:"expires_at"`
+	Note      string `json:"note"`
+	Amount    int    `json:"amount"`
+}

@@ -1,6 +1,7 @@
 package tebexgo
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -25,6 +26,25 @@ func (s *Session) GetGiftCard(cardId string) (*GiftCard, error) {
 	resp, err := internal.GetRequest(s.Secret, endpoint)
 	if err != nil {
 		log.Println("Failed to get gift card")
+		return nil, err
+	}
+
+	var giftCard GiftCard
+	internal.UnmarshalResponse(resp, &giftCard)
+
+	return &giftCard, nil
+}
+
+func (s *Session) CreateGiftCard(cardObject *PutGiftCardObject) (*GiftCard, error) {
+	jsonBody, err := json.Marshal(&cardObject)
+	if err != nil {
+		log.Println("Failed to marshal gift card object")
+		return nil, err
+	}
+
+	resp, err := internal.PostRequest(s.Secret, GiftCardsEndpoint, jsonBody)
+	if err != nil {
+		log.Println("Failed to create gift card")
 		return nil, err
 	}
 
