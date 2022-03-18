@@ -53,3 +53,36 @@ func (s *Session) CreateGiftCard(cardObject *PutGiftCardObject) (*GiftCard, erro
 
 	return &giftCard, nil
 }
+
+func (s *Session) DisableGiftCard(giftCardId string) (*GiftCard, error) {
+	endpoint := fmt.Sprintf("%s/%s", GiftCardsEndpoint, giftCardId)
+	resp, err := internal.DeleteRequest(s.Secret, endpoint, nil)
+	if err != nil {
+		log.Println("Failed to disable giftcard")
+		return nil, err
+	}
+
+	var giftCard GiftCard
+	err = internal.UnmarshalResponse(resp, &giftCard)
+	if err != nil {
+		log.Println("Failed to unmarshal response")
+		return nil, err
+	}
+
+	return &giftCard, nil
+}
+
+func (s *Session) TopUpGiftCard(giftCardId string) (*GiftCard, error) {
+	endpoint := fmt.Sprintf("%s/%s", GiftCardsEndpoint, giftCardId)
+
+	resp, err := internal.PutRequest(s.Secret, endpoint, nil)
+	if err != nil {
+		log.Println("Failed to create gift card")
+		return nil, err
+	}
+
+	var giftCard GiftCard
+	internal.UnmarshalResponse(resp, &giftCard)
+
+	return &giftCard, nil
+}

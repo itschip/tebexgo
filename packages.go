@@ -2,6 +2,7 @@ package tebexgo
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/itschip/tebexgo/internal"
@@ -42,13 +43,15 @@ func (s *Session) GetPackage(packageId string) (*Package, error) {
 }
 
 func (s *Session) UpdatePackage(packageId string, updateObject *UpdatePackageObject) error {
+	endpoint := fmt.Sprintf("%s/%s", RetrievePackageEndpoint, packageId)
+
 	reqBody, err := json.Marshal(&updateObject)
 	if err != nil {
 		log.Println("Failed to marshal body")
 		return err
 	}
 
-	_, err = internal.PutRequest(s.Secret, RetrievePackageEndpoint+packageId, reqBody)
+	_, err = internal.PutRequest(s.Secret, endpoint, reqBody)
 
 	if err != nil {
 		log.Printf("Failed to update package, Error: %v", err.Error())

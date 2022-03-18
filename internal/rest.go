@@ -73,27 +73,58 @@ func PutRequest(secret string, endpoint string, body []byte) ([]byte, error) {
 		log.Println("Failed to post request")
 		return nil, err
 	}
-	
+
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("X-Tebex-Secret", secret)
-	
+
 	client := &http.Client{}
 	response, err := client.Do(request)
-	
+
 	if err != nil {
 		log.Println(err.Error())
 		return nil, err
 	}
-	
+
 	fmt.Println(response.Status)
-	
+
 	defer response.Body.Close()
-	
+
 	body, err = ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
 	}
-	
+
+	return body, nil
+}
+
+func DeleteRequest(secret string, endpoint string, body []byte) ([]byte, error) {
+	request, err := http.NewRequest("DELETE", endpoint, nil)
+	if err != nil {
+		log.Println("Failed to post request")
+		return nil, err
+	}
+
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("X-Tebex-Secret", secret)
+
+	client := &http.Client{}
+	response, err := client.Do(request)
+
+	if err != nil {
+		log.Println(err.Error())
+		return nil, err
+	}
+
+	fmt.Println(response.Status)
+
+	defer response.Body.Close()
+
+	body, err = ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
 	return body, nil
 }

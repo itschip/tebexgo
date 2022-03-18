@@ -168,3 +168,28 @@ type PutGiftCardObject struct {
 	Note      string `json:"note"`
 	Amount    int    `json:"amount"`
 }
+
+type Sales struct {
+	Data []Sale `json:"data"`
+}
+
+type Sale struct {
+	Id        int           `json:"id"`
+	Effective SaleEffective `json:"effective"`
+	Discount  SaleDiscount  `json:"discount"`
+	Start     int           `json:"start"`
+	Expire    int           `json:"expire"`
+	Order     int           `json:"order"`
+}
+
+type SaleEffective struct {
+	Type       string `json:"package"`
+	Packages   []int  `json:"packages"`
+	Categories []int  `json:"categories"`
+}
+
+type SaleDiscount struct {
+	Type       string `json:"type"`
+	Percentage int    `json:"percentage"`
+	Value      int    `json:"value"`
+}
