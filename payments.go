@@ -7,8 +7,9 @@ import (
 	"github.com/itschip/tebexgo/internal"
 )
 
+// Retrive the latest payments (up to a maximum of 100) made on your webstore.
 func (s *Session) GetAllPayments() (*[]Payment, error) {
-	resp, err := internal.GetRequest(s.Secret, PaymentsEndpoint, nil)
+	resp, err := internal.GetRequest(s.Secret, PaymentsEndpoint)
 	if err != nil {
 		log.Println("Failed to get all payments")
 		return nil, err
@@ -24,9 +25,10 @@ func (s *Session) GetAllPayments() (*[]Payment, error) {
 	return &payments, nil
 }
 
+// Retrive a payment made on your webstore by transaction ID.
 func (s *Session) RetrievePayment(transactionId string) (*Payment, error) {
 	endpoint := fmt.Sprintf("%s/%s", PaymentsEndpoint, transactionId)
-	resp, err := internal.GetRequest(s.Secret, endpoint, nil)
+	resp, err := internal.GetRequest(s.Secret, endpoint)
 	if err != nil {
 		log.Println("Failed to get payment")
 		return nil, err
@@ -40,4 +42,10 @@ func (s *Session) RetrievePayment(transactionId string) (*Payment, error) {
 	}
 
 	return &payment, err
+}
+
+// Returns an array of fields (custom variables, etc) required to
+// be entered for a manual payment to be created for a package.
+func (s *Session) GetRequiredPayment(packageId string) {
+	// todo
 }
