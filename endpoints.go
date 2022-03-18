@@ -10,4 +10,5 @@ var (
 	CheckoutEndpoint        = TebexEndpoint + "/checkout"
 	AllSalesEndpoint        = TebexEndpoint + "/sales"
 	GiftCardsEndpoint       = TebexEndpoint + "/gift-cards"
+	PlayerLookupEndpoint    = TebexEndpoint + "/user"
 )

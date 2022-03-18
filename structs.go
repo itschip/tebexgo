@@ -193,3 +193,64 @@ type SaleDiscount struct {
 	Percentage int    `json:"percentage"`
 	Value      int    `json:"value"`
 }
+
+type PlayerData struct {
+	Player         Player          `json:"player"`
+	BanCount       int             `json:"banCount"`
+	ChargebackRate int             `json:"chargebackRate"`
+	Payments       []PlayerPayment `json:"payments"`
+	PurchaseTotals PurchaseTotals  `json:"purchaseTotals"`
+}
+
+type Player struct {
+	Id               string `json:"id"`
+	CreatedAt        string `json:"created_at"`
+	UpdatedAt        string `json:"updated_at"`
+	CacheExpire      string `json:"cache_expire"`
+	Username         string `json:"username"`
+	Meta             string `json:"meta"`
+	PluginUsernameId string `json:"plugin_username_id"`
+}
+
+type PlayerPayment struct {
+	TxnId    string `json:"txn_id"`
+	Time     int    `json:"time"`
+	Price    int64  `json:"price"`
+	Currency string `json:"urrency"`
+	Status   int    `json:"status"`
+}
+
+type PurchaseTotals struct {
+	USD int64 `json:"USD"`
+	GBP int64 `json:"GBP"`
+}
+
+// Payments
+
+type Payment struct {
+	Id             int              `json:"id"`
+	Amount         string           `json:"amount"`
+	Date           string           `json:"date"`
+	Currency       Currency         `json:"currency"`
+	PaymentGateway PaymentGateway   `json:"gateway"`
+	Status         string           `json:"gateway"`
+	Email          string           `json:"email"`
+	Player         PaymentPlayer    `json:"player"`
+	Packages       []PaymentPackage `json:"packages"`
+}
+
+type PaymentGateway struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+type PaymentPlayer struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Uuid string `json:"uuid"`
+}
+
+type PaymentPackage struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}
