@@ -13,7 +13,9 @@ func (s *Session) GetListing() (*Listing, error) {
 	}
 	
 	var listing Listing
-	internal.UnmarshalResponse(res, &listing)
+	if err := internal.UnmarshalResponse(res, &listing); err != nil {
+		return nil, err
+	}
 	
 	return &listing, nil
 }

@@ -15,7 +15,9 @@ func (s *Session) GetServerInfo() (*ServerInformation, error) {
 	
 	var serverInfo ServerInformation
 	
-	internal.UnmarshalResponse(resp, &serverInfo)
+	if err := internal.UnmarshalResponse(resp, &serverInfo); err != nil {
+		return nil, err
+	}
 	
 	return &serverInfo, nil
 }

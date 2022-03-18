@@ -17,7 +17,9 @@ func (s *Session) GetAllPackages() (*[]Package, error) {
 
 	var packages []Package
 
-	internal.UnmarshalResponse(resp, &packages)
+	if err := internal.UnmarshalResponse(resp, &packages); err != nil {
+		return nil, err
+	}
 
 	return &packages, nil
 }
@@ -32,7 +34,9 @@ func (s *Session) GetPackage(packageId string) (*Package, error) {
 
 	var pkg Package
 
-	internal.UnmarshalResponse(resp, &pkg)
+	if err := internal.UnmarshalResponse(resp, &pkg); err != nil {
+		return nil, err
+	}
 
 	return &pkg, nil
 }
