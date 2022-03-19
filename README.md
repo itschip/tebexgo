@@ -1,6 +1,9 @@
 # TebexGo
 Go package for the Tebex Plugin API
 
+### Note
+Please note that all requests to the API must be sent via HTTPS
+
 ### Prerequisites
 Golang
 
