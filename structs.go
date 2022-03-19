@@ -335,3 +335,23 @@ type CouponExpire struct {
 	Limit           int    `json:"limit"`
 	Date            string `json:"date"`
 }
+
+type CreateCouponObject struct {
+	Code                      string `json:"code"`
+	EffectiveOn               string `json:'effective_on"`
+	Packages                  []int  `json:"packages"`
+	Categories                []int  `json:"categories"`
+	DiscountType              string `json:"discount_type"`
+	DiscountAmount            int    `json:"discount_amount"`
+	DiscountPrecentage        int    `json:"discount_precentage"`
+	ReedemUnlimited           bool   `json:"reedem_unlimited"`
+	ExpireNever               bool   `json:"expire_never"`
+	ExpireLimit               int    `json:"expire_limit"`
+	ExpireDate                string `json:"expire_date"`
+	StartDate                 string `json:"start_date"`
+	BasketType                string `json:"basket_type"`
+	Minium                    int    `json:"minimum"`
+	DiscountApplicationMethod int    `json:"discount_application_method"`
+	Username                  string `json:"username"`
+	Note                      string `json:"note"`
+}
