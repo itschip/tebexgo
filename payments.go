@@ -53,13 +53,13 @@ func (s *Session) GetRequiredPaymentFields(packageId string) (*[]PaymentPackageF
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var paymentFields []PaymentPackageFields
 	err = internal.UnmarshalResponse(resp, &paymentFields)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &paymentFields, nil
 }
 
@@ -69,11 +69,11 @@ func (s *Session) UpdatePayment(transactionId string, object *UpdatePaymentObjec
 	if err != nil {
 		return err
 	}
-	
+
 	_, err = internal.PutRequest(s.Secret, endpoint, jsonBody)
 	if err != nil {
 		return err
 	}
-	
+
 	return nil
 }
