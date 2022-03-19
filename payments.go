@@ -1,6 +1,7 @@
 package tebexgo
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -46,6 +47,33 @@ func (s *Session) RetrievePayment(transactionId string) (*Payment, error) {
 
 // Returns an array of fields (custom variables, etc) required to
 // be entered for a manual payment to be created for a package.
-func (s *Session) GetRequiredPayment(packageId string) {
-	// todo
+func (s *Session) GetRequiredPaymentFields(packageId string) (*[]PaymentPackageFields, error) {
+	endpoint := fmt.Sprintf("%s/fields/%s", PaymentsEndpoint, packageId)
+	resp, err := internal.GetRequest(s.Secret, endpoint)
+	if err != nil {
+		return nil, err
+	}
+	
+	var paymentFields []PaymentPackageFields
+	err = internal.UnmarshalResponse(resp, &paymentFields)
+	if err != nil {
+		return nil, err
+	}
+	
+	return &paymentFields, nil
+}
+
+func (s *Session) UpdatePayment(transactionId string, object *UpdatePaymentObject) error {
+	endpoint := fmt.Sprintf("%s/%s", PaymentsEndpoint, transactionId)
+	jsonBody, err := json.Marshal(&object)
+	if err != nil {
+		return err
+	}
+	
+	_, err = internal.PutRequest(s.Secret, endpoint, jsonBody)
+	if err != nil {
+		return err
+	}
+	
+	return nil
 }

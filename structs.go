@@ -255,6 +255,23 @@ type PaymentPackage struct {
 	Name string `json:"name"`
 }
 
+type PaymentPackageFields struct {
+	Name    string                      `json:"name"`
+	Value   string                      `json:"value"`
+	Type    string                      `json:"type"`
+	Options []PaymentPackageFieldOption `json:"options"`
+}
+
+type PaymentPackageFieldOption struct {
+	Label string `json:"label"`
+	Value int    `json:"value"`
+}
+
+type UpdatePaymentObject struct {
+	Username  string `json:"username"`
+	Status string `json:"status"`
+}
+
 // Community
 
 type CommunityGoal struct {
