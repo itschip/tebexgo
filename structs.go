@@ -290,3 +290,49 @@ type CommunityGoal struct {
 	Satus         string `json:"status"`
 	Sale          int    `json:"sale"`
 }
+
+// Coupons
+
+type Coupons struct {
+	Pagination CouponPagination `json:"pagination"`
+	Data CouponData `json:"data"`
+}
+
+type Coupon struct {
+	Data CouponData `json:"data"`
+}
+
+
+type CouponPagination struct {
+	TotalResults int `json:"totalResults"`
+	CurrentPage int `json:"currentPage"`
+	LastPage int `json:"lastPage"`
+	Previous int `json:"previous"`
+	Next string `json:"next"`
+}
+
+type CouponData struct {
+	Id int `json:"id"`
+	Code string `json:"code"`
+	Effective CouponEffective `json:"effective"`
+	Expire CouponExpire `json:"expire"`
+	BasketType string `json:"basket_type"`
+	StartDate string `json:"start_date"`
+	UserLimit string `json:"user_limit"`
+	Minimum int `json:"minimum"`
+	Username string `json:"username"`
+	Note string `json:"note"`
+}
+
+type CouponEffective struct {
+	Type string `json:"type"`
+	Packages []int `json:"packages"`
+	Categories []int `json:"categories"`
+}
+
+type CouponExpire struct {
+	ReedemUnlimited string `json:"reedem_unlimited"`
+	ExpireNever string `json:"expire_never"`
+	Limit int `json:"limit"`
+	Date string `json:"date"`
+}

@@ -13,4 +13,5 @@ var (
 	PlayerLookupEndpoint    = TebexEndpoint + "/user"
 	PaymentsEndpoint        = TebexEndpoint + "/payments"
 	CommunityEndpoint       = TebexEndpoint + "/community_goals"
+	CouponsEndpoint         = TebexEndpoint + "/coupons"
 )
