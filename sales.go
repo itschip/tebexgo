@@ -6,12 +6,18 @@ import (
 	"github.com/itschip/tebexgo/internal"
 )
 
-func (s *Session) GetAllSales() {
+func (s *Session) GetAllSales() (*Sales, error) {
 	resp, err := internal.GetRequest(s.Secret, AllSalesEndpoint)
 	if err != nil {
 		log.Println("Failed to get all sales")
 		return nil, err
 	}
-
-	// TODO: Unmarshal response to struct
+	
+	var sales Sales
+	err = internal.UnmarshalResponse(resp, &sales)
+	if err != nil {
+		return nil, err
+	}
+	
+	return &sales, nil
 }

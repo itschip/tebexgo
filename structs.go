@@ -216,7 +216,7 @@ type PlayerPayment struct {
 	TxnId    string `json:"txn_id"`
 	Time     int    `json:"time"`
 	Price    int64  `json:"price"`
-	Currency string `json:"urrency"`
+	Currency string `json:"currency"`
 	Status   int    `json:"status"`
 }
 
@@ -233,7 +233,7 @@ type Payment struct {
 	Date           string           `json:"date"`
 	Currency       Currency         `json:"currency"`
 	PaymentGateway PaymentGateway   `json:"gateway"`
-	Status         string           `json:"gateway"`
+	Status         string           `json:"status"`
 	Email          string           `json:"email"`
 	Player         PaymentPlayer    `json:"player"`
 	Packages       []PaymentPackage `json:"packages"`
