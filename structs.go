@@ -254,3 +254,22 @@ type PaymentPackage struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
+
+// Community
+
+type CommunityGoal struct {
+	Id            int    `json:"id"`
+	CreatedAt     string `json:"created_at"`
+	UpdatedAt     string `json:"updated_at"`
+	Account       int    `json:"account"`
+	Name          string `json:"name"`
+	Description   string `json:"description"`
+	Image         string `json:"image"`
+	Target        string `json:"target"`
+	Current       string `json:"current"`
+	Repeatable    int    `json:"repeatable"`
+	LastAchieved  int    `json:"last_achieved"`
+	TimesAchieved int    `json:"times_achieved"`
+	Satus         string `json:"status"`
+	Sale          int    `json:"sale"`
+}
