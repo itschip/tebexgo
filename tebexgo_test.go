@@ -9,5 +9,5 @@ func TestNew(t *testing.T) {
 	s := New("")
 
 	data, _ := s.CreateBan(&BanInput{Reason: "some reason", Ip: "", User: "some uid"})
-	fmt.Println(data.Reason)
+	fmt.Println(data.Data[0].Reason)
 }

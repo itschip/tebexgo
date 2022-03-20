@@ -50,7 +50,7 @@ func (s *Session) CreateCoupon(createObject *CreateCouponObject) (*CouponData, e
 	}
 
 	var coupon CouponData
-	err := internal.UnmarshalResponse(resp, &coupon)
+	err = internal.UnmarshalResponse(resp, &coupon)
 	if err != nil {
 		return nil, err
 	}

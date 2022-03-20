@@ -23,6 +23,9 @@ func (s *Session) GetAllBans() (*Bans, error) {
 
 func (s *Session) CreateBan(input *BanInput) (*Bans, error) {
 	jsonBody, err := json.Marshal(&input)
+	if err != nil {
+		return nil, err
+	}
 
 	res, err := internal.PostRequest(s.Secret, BansEndpoint, jsonBody)
 	if err != nil {
