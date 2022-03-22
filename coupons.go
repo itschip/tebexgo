@@ -13,12 +13,13 @@ func (s *Session) GetAllCoupons() (*Coupons, error) {
 		return nil, err
 	}
 
+
 	var coupons Coupons
 	err = internal.UnmarshalResponse(resp, &coupons)
 	if err != nil {
 		return nil, err
 	}
-
+ 
 	return &coupons, nil
 }
 
