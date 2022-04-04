@@ -16,7 +16,10 @@ func (s *Session) GetAllBans() (*Bans, error) {
 	}
 
 	var bans Bans
-	internal.UnmarshalResponse(res, &bans)
+	err = internal.UnmarshalResponse(res, &bans)
+	if err != nil {
+		return nil, err
+	}
 
 	return &bans, err
 }
